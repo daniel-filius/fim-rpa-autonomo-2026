@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fim do RPA: PF, MEI ou Simples? Decisor gratuito para autônomos em 2026</title>
+<meta name="description" content="NFS-e Nacional obrigatória desde jan/2026 e CNPJ obrigatório para autônomos a partir de jul/2026: descubra se compensa continuar PF, virar MEI ou abrir Simples Nacional. Calculadora grátis, sem cadastro.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://daniel-filius.github.io/fim-rpa-autonomo-2026/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Fim do RPA: PF, MEI ou Simples? Decisor gratuito para autônomos em 2026">
+<meta property="og:description" content="Faturamento + profissão → compara Carnê-Leão (PF), MEI e Simples Nacional e mostra qual caminho sai mais barato na Reforma Tributária de 2026.">
+<meta property="og:url" content="https://daniel-filius.github.io/fim-rpa-autonomo-2026/">
+<meta property="og:locale" content="pt_BR">
+<!-- Analytics plausível (sem custo, sem cookies): descomentar e trocar o domínio no deploy.
+     Plausible Community Edition self-hosted no NAS, ou GoatCounter free tier. -->
+<!--
+<script defer data-domain="daniel-filius.github.io/fim-rpa-autonomo-2026" src="https://plausible.io/js/script.js"></script>
+-->
+<style>
+  :root{
+    --verde:#1a8a4a; --verde-bg:#e6f5ec;
+    --amarelo:#b8860b; --amarelo-bg:#fdf6e3;
+    --vermelho:#c0392b; --vermelho-bg:#fdeceb;
+    --azul:#1c4e80; --texto:#1f2933; --cinza:#52606d; --linha:#e4e7eb;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--texto);line-height:1.55;background:#fafbfc}
+  header{background:linear-gradient(135deg,#1c4e80,#2c6cb0);color:#fff;padding:2.4rem 1rem 2rem;text-align:center}
+  header h1{margin:0 0 .5rem;font-size:1.6rem;max-width:720px;margin-inline:auto}
+  header p{margin:0;opacity:.92;max-width:620px;margin-inline:auto;font-size:1.02rem}
+  main{max-width:720px;margin:0 auto;padding:1.5rem 1rem 3rem}
+  .card{background:#fff;border:1px solid var(--linha);border-radius:12px;padding:1.4rem;margin-bottom:1.4rem;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+  h2{font-size:1.2rem;margin:0 0 1rem}
+  label{display:block;font-weight:600;margin:.9rem 0 .3rem;font-size:.95rem}
+  .hint{font-weight:400;color:var(--cinza);font-size:.82rem;display:block;margin-top:.15rem}
+  input[type=number],input[type=range],select{width:100%;padding:.65rem .7rem;border:1px solid #cbd2d9;border-radius:8px;font-size:1rem;background:#fff}
+  input:focus,select:focus{outline:2px solid #2c6cb0;border-color:#2c6cb0}
+  .row{display:flex;gap:1rem;flex-wrap:wrap}
+  .row>div{flex:1;min-width:160px}
+  button{cursor:pointer;border:none;border-radius:8px;font-weight:700;font-size:1rem;padding:.8rem 1rem;width:100%;margin-top:1.2rem;background:#1c4e80;color:#fff;transition:background .15s}
+  button:hover{background:#163d63}
+  #resultado{display:none;margin-top:1.4rem}
+  .semaforo{border-radius:12px;padding:1.1rem 1.2rem;margin-bottom:1rem;border:1px solid}
+  .semaforo h3{margin:0 0 .35rem;font-size:1.15rem}
+  .semaforo p{margin:0;font-size:.95rem}
+  .s-verde{background:var(--verde-bg);border-color:var(--verde);color:var(--verde)}
+  .s-amarelo{background:var(--amarelo-bg);border-color:var(--amarelo);color:var(--amarelo)}
+  .s-vermelho{background:var(--vermelho-bg);border-color:var(--vermelho);color:var(--vermelho)}
+  .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.7rem;margin-top:1rem}
+  @media (max-width:560px){.grid3{grid-template-columns:1fr}}
+  .box{background:#f7f9fb;border:1px solid var(--linha);border-radius:10px;padding:.85rem;text-align:center}
+  .box.recomendado{border-color:var(--verde);background:var(--verde-bg)}
+  .box.indisponivel{opacity:.55}
+  .box .k{font-size:.76rem;color:var(--cinza);text-transform:uppercase;letter-spacing:.03em}
+  .box .v{font-size:1.15rem;font-weight:700;margin-top:.25rem}
+  .box .nota{font-size:.75rem;color:var(--cinza);margin-top:.3rem}
+  table{width:100%;border-collapse:collapse;margin-top:1rem;font-size:.92rem}
+  th,td{text-align:left;padding:.55rem .4rem;border-bottom:1px solid var(--linha)}
+  th{color:var(--cinza);font-weight:600;font-size:.82rem;text-transform:uppercase}
+  .cta{display:block;text-align:center;background:#1a8a4a;color:#fff;text-decoration:none;font-weight:700;padding:.85rem 1rem;border-radius:8px;margin-top:1rem}
+  .cta:hover{background:#157a40}
+  .cta-sub{text-align:center;font-size:.82rem;color:var(--cinza);margin:.4rem 0 0}
+  .disclaimer{background:#fdf6e3;border:1px solid #e8d9a0;border-radius:10px;padding:.9rem 1rem;font-size:.85rem;color:#6b5d2e}
+  .aviso{background:var(--amarelo-bg);border:1px solid var(--amarelo);color:#6b5d2e;border-radius:10px;padding:.8rem 1rem;font-size:.88rem;margin-top:.9rem}
+  details{margin-top:.7rem}
+  summary{cursor:pointer;font-weight:600;color:var(--azul)}
+  details p,details li{font-size:.9rem;color:var(--cinza)}
+  ul.check{padding-left:1.1rem;margin:.6rem 0}
+  ul.check li{margin-bottom:.5rem;font-size:.93rem}
+  footer{text-align:center;font-size:.8rem;color:var(--cinza);padding:1.5rem 1rem 2.5rem;max-width:720px;margin:0 auto}
+  footer a{color:var(--azul)}
+  .ok-msg{display:none;background:var(--verde-bg);border:1px solid var(--verde);color:var(--verde);border-radius:8px;padding:.8rem 1rem;margin-bottom:1rem;font-weight:600}
+  .rangeval{font-weight:700;color:var(--azul)}
+</style>
+</head>
+<body>
+<header>
+  <h1>NFS-e obrigatória, CNPJ chegando em julho: você deveria continuar PF, virar MEI ou abrir Simples?</h1>
+  <p>A Reforma Tributária mudou o jogo do autônomo em 2026. Informe seu faturamento e profissão e descubra, em segundos, qual caminho sai mais barato pro seu caso — com a carga tributária estimada de cada um lado a lado.</p>
+</header>
+
+<main>
+  <p class="ok-msg" id="okmsg">Recebemos seu e-mail! Você vai receber o resumo do seu cenário e avisos sobre a inscrição do CNPJ de julho/2026.</p>
+
+  <section class="card">
+    <h2>1. Seu perfil como autônomo</h2>
+    <form id="calc" autocomplete="off">
+      <label for="profissao">Sua atividade profissional
+        <span class="hint">Isso define se sua atividade permite MEI (profissões regulamentadas com conselho de classe — OAB, CRM, CRC, CREA/CAU, CRO, CRP, CREFITO — são vedadas ao MEI).</span>
+      </label>
+      <select id="profissao"></select>
+
+      <label for="cliente">Quem são seus clientes, na maioria?
+        <span class="hint">Só usamos isso pra um alerta sobre risco de "pejotização" — não entra no cálculo de imposto.</span>
+      </label>
+      <select id="cliente">
+        <option value="pf-diverso">Pessoas físicas diversas</option>
+        <option value="pj-diverso">Empresas (PJ) diversas, vários clientes</option>
+        <option value="pj-unico">Uma única empresa (ou quase só ela), de forma recorrente</option>
+      </select>
+
+      <label for="faturamento">Faturamento médio mensal como autônomo (R$)
+        <span class="hint">Total que você recebe por mês, hoje ou projetado, já emitindo NFS-e ou RPA.</span>
+      </label>
+      <input type="number" id="faturamento" min="0" step="100" placeholder="ex.: 6000" inputmode="decimal">
+
+      <label for="prolabore">Se abrisse Simples Nacional (PJ), que % do faturamento tiraria de pró-labore? <span class="rangeval" id="prolabore-val">28%</span>
+        <span class="hint">Define o Fator R: <strong>28% ou mais</strong> cai no Anexo III (alíquota menor). Abaixo disso, Anexo V (alíquota maior). Só afeta o caminho "Simples".</span>
+      </label>
+      <input type="range" id="prolabore" min="10" max="100" step="1" value="28">
+
+      <label for="contabilidade">Custo mensal estimado de uma contabilidade PJ, se abrir Simples (R$)
+        <span class="hint">MEI normalmente não exige contador; Simples/ME sim. Deixe a estimativa conservadora da sua região ou use o padrão sugerido.</span>
+      </label>
+      <input type="number" id="contabilidade" min="0" step="10" value="200" inputmode="decimal">
+
+      <button type="submit">Descobrir meu caminho mais barato</button>
+    </form>
+
+    <div id="resultado" aria-live="polite"></div>
+  </section>
+
+  <section class="card" id="checklist">
+    <h2>2. O que muda em 2026 — checklist da transição</h2>
+    <ul class="check">
+      <li><strong>Desde 1º/01/2026:</strong> autônomo pessoa física que presta serviço de forma habitual deve emitir <strong>NFS-e Nacional</strong> (o antigo RPA não é mais o documento principal). Cadastro é gratuito no portal nacional (<a href="https://www.nfse.gov.br" target="_blank" rel="noopener">nfse.gov.br</a>), que já calcula ISS/IBS/CBS automaticamente.</li>
+      <li><strong>A partir de julho/2026:</strong> autônomos contribuintes de IBS/CBS devem se <strong>inscrever no CNPJ</strong> — isso <em>não</em> te transforma em empresa automaticamente, é só um número de identificação fiscal adicional ao CPF.</li>
+      <li><strong>O que muda no recebimento:</strong> quem te contrata (principalmente empresas) vai pedir a NFS-e para cada pagamento; sem ela, alguns clientes PJ podem reter mais imposto na fonte ou exigir regularização antes de pagar.</li>
+      <li><strong>Cuidado com boato:</strong> a Receita Federal já teve que desmentir publicamente conteúdo falso no TikTok dizendo que autônomos seriam obrigados a pagar imposto maior. A obrigação é de <em>emissão de documento fiscal</em>, não um aumento de alíquota por si só.</li>
+      <li><strong>Se você atende poucos clientes PJ de forma recorrente</strong> (principalmente um único tomador), fique atento ao risco de a Receita/Justiça do Trabalho entender que existe vínculo empregatício disfarçado ("pejotização") — isso é uma questão jurídica, não tributária, e este decisor não avalia esse risco.</li>
+    </ul>
+  </section>
+
+  <section class="card" id="alerta">
+    <h2>3. Quer o resultado por e-mail (e avisos sobre o CNPJ de julho)?</h2>
+    <p style="margin-top:0;color:var(--cinza);font-size:.95rem">Deixe seu e-mail e mandamos um resumo do seu cenário, além de avisos sobre a inscrição do CNPJ de julho/2026 e mudanças nas tabelas de MEI/Simples. Sem spam.</p>
+    <form id="wl" action="https://formsubmit.co/danielfilho.workspace@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="Novo lead — Fim do RPA / Decisor autônomo 2026">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://daniel-filius.github.io/fim-rpa-autonomo-2026/?ok=1#alerta">
+      <input type="text" name="_honey" style="display:none">
+      <label for="wl-email" style="margin-top:0">Seu melhor e-mail</label>
+      <input type="email" id="wl-email" name="email" required placeholder="seu@email.com">
+      <button type="submit">Quero receber</button>
+    </form>
+  </section>
+
+  <section class="card">
+    <h2>4. Como o cálculo funciona</h2>
+    <div class="disclaimer">
+      <strong>Importante — isto não é aconselhamento contábil ou jurídico.</strong> Esta é uma ferramenta educativa de estimativa. Os valores usam as tabelas gerais do IRPF 2026, do limite/DAS do MEI e do Simples Nacional (Anexo III/V) vigentes, mas não substituem uma análise contábil do seu caso — que pode ter deduções (Livro Caixa), INSS como contribuinte individual, particularidades por CNAE/atividade, risco de pejotização e outros fatores não incluídos aqui. Antes de qualquer decisão, fale com um contador.
+    </div>
+    <details>
+      <summary>Regras usadas (2026)</summary>
+      <ul>
+        <li><strong>Carnê-Leão (PF):</strong> tabela progressiva mensal do IRPF, com o redutor da Lei 15.270/2025 — isenção total até R$ 5.000/mês de rendimento tributável, redução decrescente entre R$ 5.000,01 e R$ 7.350, e tabela cheia (até 27,5%) acima disso.</li>
+        <li><strong>MEI:</strong> disponível se (a) sua atividade não for uma profissão regulamentada com conselho de classe (Anexo XI da Resolução CGSN 140/2018 — advocacia, medicina, contabilidade, engenharia/arquitetura, odontologia, psicologia, fisioterapia, corretagem, jornalismo, entre outras) <strong>e</strong> (b) seu faturamento anual não passar de R$ 81.000 (tolerância de 20% = R$ 97.200 no ano em que ultrapassar, com DAS complementar e migração obrigatória no ano seguinte). Custo estimado: DAS fixo de R$ 86,05/mês (serviço), sem contabilidade.</li>
+        <li><strong>Simples Nacional + Fator R:</strong> se o % de pró-labore informado for ≥ 28% do faturamento, o cálculo usa o <strong>Anexo III</strong> (alíquotas de 6% a 33%); abaixo de 28%, usa o <strong>Anexo V</strong> (alíquotas de 15,5% a 30,5%). A alíquota efetiva é (faturamento anual × alíquota nominal − parcela a deduzir) / faturamento anual.</li>
+        <li><strong>Não incluído nesta estimativa:</strong> INSS do contribuinte individual (PF), eventual INSS patronal adicional fora do DAS no Anexo V, custo de abertura/baixa de CNPJ, e o risco jurídico de pejotização — por isso a comparação é uma aproximação, não o número final da sua situação.</li>
+        <li><strong>Recomendação:</strong> entre os caminhos elegíveis para seu perfil (PF sempre disponível; MEI só se a profissão permitir e o faturamento couber no limite; Simples sempre disponível), indicamos o de menor custo anual estimado.</li>
+      </ul>
+      <p>Fontes: NFS-e Nacional obrigatória desde 01/2026 (Ministério da Fazenda) · inscrição CNPJ a partir de 07/2026 para contribuintes de IBS/CBS (Dinastia Contábil, ACINH) · tabela progressiva do IRPF 2026 (Lei 15.270/2025) · limite/DAS do MEI e Anexo XI da Resolução CGSN 140/2018 · tabelas do Simples Nacional Anexo III/V (LC 123/2006 e alterações).</p>
+    </details>
+  </section>
+
+  <footer>
+    Decisor "Fim do RPA" · ferramenta educativa gratuita · não é aconselhamento contábil ou jurídico.<br>
+    Os links de contabilidade/abertura de CNPJ podem ser de parceiros (afiliados). Isso não muda o preço para você.
+  </footer>
+</main>
+
+<script src="calc.js"></script>
+<script>
+const BRL = v => v.toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0});
+const BRL2 = v => v.toLocaleString('pt-BR',{style:'currency',currency:'BRL',minimumFractionDigits:2,maximumFractionDigits:2});
+
+// CTA de afiliado: trocar pelo link real do programa de indicação de contabilidade/abertura de CNPJ no deploy.
+const AFILIADO_URL = "AFFILIATE_URL";
+const TEM_AFILIADO = /^https?:\/\//.test(AFILIADO_URL); // só renderiza CTA externo quando há link real
+
+// Popular select de profissões a partir do calc.js (fonte única, sem duplicar lista no HTML)
+const profissaoSelect = document.getElementById('profissao');
+FRPA.PROFISSOES.forEach(p => {
+  const opt = document.createElement('option');
+  opt.value = p.id;
+  opt.textContent = p.label;
+  profissaoSelect.appendChild(opt);
+});
+
+const prolaboreInput = document.getElementById('prolabore');
+const prolaboreVal = document.getElementById('prolabore-val');
+prolaboreInput.addEventListener('input', () => { prolaboreVal.textContent = prolaboreInput.value + '%'; });
+
+const NOME_CAMINHO = { pf: 'Continuar PF (NFS-e)', mei: 'Virar MEI', simples: 'Abrir Simples Nacional' };
+
+function motivoIndisponivelMEI(status) {
+  if (status === 'profissao-vedada') return 'Sua atividade é uma profissão regulamentada (tem conselho de classe) — MEI não é permitido por lei, independente do faturamento.';
+  if (status === 'faturamento-excedido') return `Faturamento anual acima do limite de tolerância do MEI (${BRL(FRPA.MEI_LIMITE_TOLERANCIA)}).`;
+  return 'Não elegível para MEI nesse cenário.';
+}
+
+document.getElementById('calc').addEventListener('submit', function(e){
+  e.preventDefault();
+  const faturamento = parseFloat(document.getElementById('faturamento').value) || 0;
+  const fatorR = parseFloat(prolaboreInput.value) || 28;
+  const contabilidade = parseFloat(document.getElementById('contabilidade').value) || 0;
+  const profissaoId = profissaoSelect.value;
+  const cliente = document.getElementById('cliente').value;
+
+  const r = FRPA.comparar({
+    faturamentoMensalPF: faturamento,
+    profissaoId: profissaoId,
+    fatorRPercentual: fatorR,
+    custoContabilidadeSimplesMensal: contabilidade
+  });
+
+  const nomeRecomendado = NOME_CAMINHO[r.recomendacao];
+  let cls, titulo, msg;
+  if (r.recomendacao === 'pf') {
+    cls = 's-verde'; titulo = `🟢 Continuar PF emitindo NFS-e é o mais barato pro seu caso`;
+    msg = `Nessa estimativa, virar MEI ou abrir Simples custaria mais do que continuar como autônomo PF emitindo NFS-e.`;
+  } else {
+    cls = 's-verde'; titulo = `🟢 ${nomeRecomendado} é o caminho mais barato pro seu caso`;
+    msg = r.economiaVsPF > 0
+      ? `Nessa estimativa, ${nomeRecomendado.toLowerCase()} economizaria ${BRL(r.economiaVsPF)}/ano em relação a continuar só como PF.`
+      : `Nessa estimativa, ${nomeRecomendado.toLowerCase()} é o de menor custo entre as opções disponíveis pro seu perfil.`;
+  }
+
+  let boxesHtml = '<div class="grid3">';
+
+  // Box PF
+  boxesHtml += `
+    <div class="box ${r.recomendacao === 'pf' ? 'recomendado' : ''}">
+      <div class="k">Continuar PF</div>
+      <div class="v">${BRL(r.pf.custoAnual)}</div>
+      <div class="nota">Carnê-Leão/ano</div>
+    </div>`;
+
+  // Box MEI
+  if (r.mei.elegivel) {
+    boxesHtml += `
+    <div class="box ${r.recomendacao === 'mei' ? 'recomendado' : ''}">
+      <div class="k">Virar MEI</div>
+      <div class="v">${BRL(r.mei.custoAnual)}</div>
+      <div class="nota">${r.mei.status === 'tolerancia' ? 'DAS/ano — no limite, migração obrigatória no próximo ano' : 'DAS/ano'}</div>
+    </div>`;
+  } else {
+    boxesHtml += `
+    <div class="box indisponivel">
+      <div class="k">Virar MEI</div>
+      <div class="v">Indisponível</div>
+      <div class="nota">${motivoIndisponivelMEI(r.mei.status)}</div>
+    </div>`;
+  }
+
+  // Box Simples
+  const anexoNome = r.simples.anexo === 'III' ? 'Anexo III' : 'Anexo V';
+  boxesHtml += `
+    <div class="box ${r.recomendacao === 'simples' ? 'recomendado' : ''}">
+      <div class="k">Abrir Simples</div>
+      <div class="v">${BRL(r.simples.custoAnual)}</div>
+      <div class="nota">Imposto + contabilidade/ano (${anexoNome})</div>
+    </div>`;
+
+  boxesHtml += '</div>';
+
+  let html = `
+    <div class="semaforo ${cls}">
+      <h3>${titulo}</h3>
+      <p>${msg}</p>
+    </div>
+    ${boxesHtml}
+
+    <h3 style="margin:1.3rem 0 .4rem;font-size:1.05rem">Como chegamos nesse número</h3>
+    <table>
+      <tr><th>Item</th><th>Valor</th></tr>
+      <tr><td>Faturamento anual projetado</td><td>${BRL(r.faturamentoAnual)}</td></tr>
+      <tr><td>Carnê-Leão estimado (PF/ano)</td><td>${BRL2(r.pf.custoAnual)}</td></tr>
+      <tr><td>MEI</td><td>${r.mei.elegivel ? BRL2(r.mei.custoAnual) + ' /ano (DAS)' : 'Indisponível — ' + motivoIndisponivelMEI(r.mei.status)}</td></tr>
+      <tr><td>Fator R informado (Simples)</td><td>${fatorR}% → cai no <strong>${anexoNome}</strong></td></tr>
+      <tr><td>Simples: imposto + contabilidade (ano)</td><td>${BRL2(r.simples.custoAnual)}</td></tr>
+      <tr><td><strong>Caminho recomendado</strong></td><td><strong>${nomeRecomendado}</strong></td></tr>
+    </table>`;
+
+  if (cliente === 'pj-unico') {
+    html += `<div class="aviso">⚠️ Você indicou que atende quase só um único cliente PJ de forma recorrente. Isso é uma questão jurídica (risco de "pejotização"/vínculo empregatício disfarçado) que este decisor não avalia — vale conversar com um advogado trabalhista ou contador antes de formalizar qualquer caminho.</div>`;
+  }
+
+  if (TEM_AFILIADO) {
+    html += `
+    <a class="cta" href="${AFILIADO_URL}" target="_blank" rel="nofollow sponsored noopener" id="cta-afiliado">Falar com uma contabilidade especializada em autônomos →</a>
+    <p class="cta-sub">Parceiros que cuidam da abertura de CNPJ/MEI/Simples por você. Link de indicação.</p>`;
+  } else {
+    html += `
+    <a class="cta" href="#alerta" id="cta-afiliado">Quero ajuda de uma contabilidade especializada em autônomos →</a>
+    <p class="cta-sub">Deixe seu e-mail acima e te conectamos a uma contabilidade parceira.</p>`;
+  }
+
+  const box = document.getElementById('resultado');
+  box.innerHTML = html;
+  box.style.display = 'block';
+  box.scrollIntoView({behavior:'smooth', block:'nearest'});
+
+  if (window.plausible) window.plausible('calcular', {props:{recomendacao:r.recomendacao, meiElegivel:r.mei.elegivel}});
+  const cta = document.getElementById('cta-afiliado');
+  if (cta) cta.addEventListener('click', ()=>{ if(window.plausible) window.plausible('clique-afiliado'); });
+});
+
+// Confirmação pós-submit da captura de e-mail: FormSubmit redireciona de volta com ?ok=1
+if (new URLSearchParams(location.search).get('ok') === '1'){
+  document.getElementById('okmsg').style.display = 'block';
+}
+</script>
+</body>
+</html>
