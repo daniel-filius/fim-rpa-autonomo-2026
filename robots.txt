@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://daniel-filius.github.io/fim-rpa-autonomo-2026/sitemap.xml
